@@ -82,15 +82,15 @@ class KohonenMap:
                 other = row % 2 != 0 and col % 2 != 0
                 if not neuron and not other:
                     if row % 2 != 0:
-                        neuron1_row = (row - 1) / 2
-                        neuron2_row = (row + 1) / 2
-                        neuron1 = self._map.neurons[neuron1_row, col / 2, :]
-                        neuron2 = self._map.neurons[neuron2_row, col / 2, :]
+                        neuron1_row = (row - 1) // 2
+                        neuron2_row = (row + 1) // 2
+                        neuron1 = self._map.neurons[neuron1_row, col // 2, :]
+                        neuron2 = self._map.neurons[neuron2_row, col // 2, :]
                     else:
-                        neuron1_col = (col - 1) / 2
-                        neuron2_col = (col + 1) / 2
-                        neuron1 = self._map.neurons[row / 2, neuron1_col, :]
-                        neuron2 = self._map.neurons[row / 2, neuron2_col, :]
+                        neuron1_col = (col - 1) // 2
+                        neuron2_col = (col + 1) // 2
+                        neuron1 = self._map.neurons[row // 2, neuron1_col, :]
+                        neuron2 = self._map.neurons[row // 2, neuron2_col, :]
                     dist = self._map._metric(neuron1, neuron2)
                     neuron_distances[row, col] = dist
         self.distances = neuron_distances
@@ -158,7 +158,7 @@ class KohonenMap:
                           'construct_samples_for_neurons() or set ' \
                           'plot_points to False.'
             # Prints samples on the U-Matrix
-            for neuron, samples in self.samples_dict.iteritems():
+            for neuron, samples in self.samples_dict.items():
                 neuronx, neurony = neuron.split(',')
                 # In U-Matrix there is an extra neuron between each pair
                 neuronx = int(neuronx) * 2
